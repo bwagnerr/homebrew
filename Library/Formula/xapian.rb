@@ -52,8 +52,7 @@ class Xapian < Formula
       end
 
       if build.with? 'python'
-        (lib+'python2.7/site-packages').mkpath
-        ENV['PYTHON_LIB'] = lib+'python2.7/site-packages'
+        ENV['PYTHON_LIB'] =  system('python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())"')
         args << "--with-python"
       else
         args << "--without-python"
